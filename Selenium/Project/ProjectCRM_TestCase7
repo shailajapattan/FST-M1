@@ -1,0 +1,79 @@
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+
+public class ProjectCRM_TestCase7{
+
+	WebDriver driver;
+	WebDriverWait wait;
+	
+	 
+    @BeforeClass
+    public void beforeClass() {
+        driver = new FirefoxDriver();
+       
+        //Open browser
+        driver.get("http://alchemy.hguy.co/crm");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        wait = new WebDriverWait(driver, 10);
+    }
+ 
+    @Test
+    public void loginTest() throws InterruptedException {
+        //Find the username and password fields
+        WebElement username = driver.findElement(By.xpath("//*[@id=\"user_name\"]"));
+        WebElement password = driver.findElement(By.xpath("//*[@id=\"username_password\"]"));
+        
+        //Enter credentials
+        username.sendKeys("admin");
+        password.sendKeys("pa$$w0rd");
+        
+        //Click login
+        driver.findElement(By.xpath("//*[@id=\"bigbutton\"]")).click();
+        
+        driver.findElement(By.xpath("//*[@id=\"grouptab_0\"]")).click();
+        
+        driver.findElement(By.id("moduleTab_9_Leads")).click();
+              
+       
+            wait.until(ExpectedConditions.titleContains("Leads » SuiteCRM"));
+               
+        //new WebDriverWait(until(ExpectedConditions.titleContains("LEADS"));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("moduleTitle")));
+        String title = driver.getTitle();
+        System.out.println("Page title is: " + title);
+        
+        //String Text1 = driver.findElement(By.className("moduleTitle")).getText();
+        //System.out.println(Text1);
+        //Assert.assertEquals(Text1, true);
+        Thread.sleep(10000);
+        driver.findElement(By.xpath("(//span[@title='Additional Details'])[2]")).click();
+        //Actions ac = new Actions(driver);
+
+       // WebElement live= driver.findElement(By.xpath("(//span[@title='Additional Details'])[2]")); 
+       // ac.moveToElement(live).click().build().perform();
+        
+                
+        String Mobile=driver.findElement(By.xpath("(//span[@class='phone'])[1]")).getText();
+        System.out.println("Mobile Number is : "+Mobile);
+   
+     
+            
+    }
+ 
+    
+	@AfterClass
+    public void afterClass() {
+        //Close browser
+       driver.close();
+    }
+}
