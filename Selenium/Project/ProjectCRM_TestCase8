@@ -1,0 +1,83 @@
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+
+public class ProjectCRM_TestCase8{
+
+	WebDriver driver;
+	WebDriverWait wait;
+	
+	 
+    @BeforeClass
+    public void beforeClass() {
+        driver = new FirefoxDriver();
+       
+        //Open browser
+        driver.get("http://alchemy.hguy.co/crm");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        wait = new WebDriverWait(driver, 10);
+    }
+ 
+    @Test
+    public void loginTest() throws InterruptedException {
+        //Find the username and password fields
+        WebElement username = driver.findElement(By.xpath("//*[@id=\"user_name\"]"));
+        WebElement password = driver.findElement(By.xpath("//*[@id=\"username_password\"]"));
+        
+        //Enter credentials
+        username.sendKeys("admin");
+        password.sendKeys("pa$$w0rd");
+        
+        //Click login
+        driver.findElement(By.xpath("//*[@id=\"bigbutton\"]")).click();
+        
+        driver.findElement(By.xpath("//*[@id=\"grouptab_0\"]")).click();
+        
+        driver.findElement(By.id("moduleTab_9_Accounts")).click();
+              
+       
+            wait.until(ExpectedConditions.titleContains("Accounts » SuiteCRM"));
+               
+        //new WebDriverWait(until(ExpectedConditions.titleContains("LEADS"));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("moduleTitle")));
+        String title = driver.getTitle();
+        System.out.println("Page title is: " + title);
+        
+        //String Text1 = driver.findElement(By.className("moduleTitle")).getText();
+        //System.out.println(Text1);
+        //Assert.assertEquals(Text1, true);
+        Thread.sleep(10000);
+        //driver.findElement(By.xpath("(//span[@title='Additional Details'])[2]")).click();
+        String First = driver.findElement(By.xpath("/html/body/div[4]/div/div[3]/form[2]/div[3]/table/tbody/tr[1]/td[3]/b/a")).getText();
+        System.out.println("First name in the list : "+First);
+         
+        String Second = driver.findElement(By.xpath("/html/body/div[4]/div/div[3]/form[2]/div[3]/table/tbody/tr[3]/td[3]/b/a")).getText();
+        System.out.println("Third name in the list : "+Second);
+        
+        String Third = driver.findElement(By.xpath("/html/body/div[4]/div/div[3]/form[2]/div[3]/table/tbody/tr[5]/td[3]/b/a")).getText();
+        System.out.println("Fifth name in the list : "+Third);
+   
+        String Fourth = driver.findElement(By.xpath("/html/body/div[4]/div/div[3]/form[2]/div[3]/table/tbody/tr[7]/td[3]/b/a")).getText();
+        System.out.println("Seventh name in the list : "+Fourth);
+        
+        String Fifth = driver.findElement(By.xpath("/html/body/div[4]/div/div[3]/form[2]/div[3]/table/tbody/tr[7]/td[3]/b/a")).getText();
+        System.out.println("Ninth name in the list : "+Fifth);
+            
+    }
+ 
+    
+	@AfterClass
+    public void afterClass() {
+        //Close browser
+       driver.close();
+    }
+}
