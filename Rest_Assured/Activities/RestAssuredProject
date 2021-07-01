@@ -1,0 +1,41 @@
+package RestAssured;
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.equalTo;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+public class Activity1 {
+	
+	
+RequestSpecification requestSpec;
+String SSHkey;
+int id;
+@BeforeClass
+public void setUp() {
+    // Create request specification
+    requestSpec = new RequestSpecBuilder()
+        .setContentType(ContentType.JSON)
+        .setBaseUri("https://api.github.com")
+        .addHeader("Authorization","Basic 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")
+        .build();
+}
+	 @Test(priority=1)
+	    public void addNewPet() {
+	        // Create JSON request
+	        String reqBody = "{"
+	            + "\"title\": TestAPIKey,"
+	            + "\"keys\": \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDM1MO8QCmgTvHmWrLvU2AXK46B+A985OvNmBX9G6rmDbQ1bdM3VSG3xCZUpbWyVnncF0dBe7JDfv68sKe7cF+yImE0bs7P5HbBS7b+wztf28lWkjEKh6djPvSLCzOI6KvvxULY3Ws1S9SCqZNeQb5YavwMmDYB+xCRNxUfEExsCx2oKoczwdoyXbVLMaHxLBf6pAbquoIzCg/axIVdtAxMhi2EueWKl1ySgBqOVaEZIBuRin+P3+zak+ipuJv0rsfst5Vszl7uKnRldgrePmDU8mBSmYChYc+hdxW0goacWHkpoMqJrPZcQJMH3xeEHN5e+PN0roqxJpE8RgTC+AX0gpHq2kigaPQ0EqrkCrIK1kRsO5NE7yWzTMPRIWOlBbz/isDzb/1pWC/IOeZgPnYgblxv5jIJa1G4g9Ssv4wXmubMV5YrjhBqwzrAd5RJ4QLom8CLvGMQbkeoGSNRteTRaPwBOP0BelomDMaStzLFGN9exeTbu8Fk9kphfU0QcUc= gmx\059705744@DESKTOP-RT7JO18
+=\","
+	        + "}";
+	
+	        Response response =
+	        		given().spec(requestSpec) // Use requestSpec
+	        		.post("/{/user/keys}"); // Send POST request
+	       
+	        id = response.then().extract().path("[0].id");
+	        response.then().body("code", equalTo(201));
+	
+	    }
