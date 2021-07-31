@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="a24c8b33-1ecd-48c6-885b-7e25670f560b" created="3.8.1" activeEnvironment="Default environment" name="REST Project 2" updated="3.8.1 2021-05-25T17:56:21Z" encryptionMode="Not encrypted" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:interface xsi:type="con:RestService" id="0f3fd4f6-7242-4e3a-9fe7-47bf5b52294d" wadlVersion="http://wadl.dev.java.net/2009/02" name="https://api.github.com" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:settings/>
+    <con:definitionCache type="TEXT" rootPart=""/>
+    <con:endpoints>
+      <con:endpoint>https://api.github.com</con:endpoint>
+    </con:endpoints>
+    <con:resource name="Emails" path="/user/emails" id="2904113a-0d31-4f78-80ab-e5c0454bcd14">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="Emails" id="01f46ff4-abe4-4fb7-a4bf-402eff18291a" method="GET">
+        <con:settings/>
+        <con:parameters/>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json; charset=utf-8</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element>Response</con:element>
+        </con:representation>
+        <con:request name="Request 1" id="f94789ad-2d31-4c2a-b75c-cfb7935fc25b" mediaType="application/json">
+          <con:settings/>
+          <con:endpoint>https://api.github.com</con:endpoint>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+    </con:resource>
+    <con:resource name="keys" path="/user/keys" id="d33aa5c7-6ca9-4a60-b790-d165b4d7d734">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="Method 1" id="f242b7c2-8c1f-4a69-bf1d-7651c866f481" method="POST">
+        <con:settings/>
+        <con:parameters/>
+        <con:representation type="FAULT">
+          <con:mediaType>application/json; charset=utf-8</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:element xmlns:keys="https://api.github.com/user/keys">keys:Fault</con:element>
+        </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/json</con:mediaType>
+          <con:params/>
+        </con:representation>
+        <con:request name="Request 1" id="faaafe27-783b-4334-9c2f-d12aca03b517" mediaType="application/json" postQueryString="false">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>https://api.github.com</con:endpoint>
+          <con:request>{
+"title": "TestKey",
+"key":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCmBAMKPbuvkUQBdcdAzHrJjPinLj/hPPLJyCNOY6SiqYsQaK+Jtsc0bI9iLxEx4BE43nwXerjBKPR8Z4e6p6Fj+jhNnH9LXJ5SEq39qp4Rke6sCrfG20w4J1ueqq69tVMyu+/un/uXMjtH26tz+6vh1HPcJq5LyiLh0m1MHwd4FKDZbJePnfriOMQ4/I2rXD0Wezggo8ndysCptOBbmOUiZHmi7ud5rgpLqnSp16PS8kAo1c1n3mKGkiXANBzchrth+xnFXaTGQ5mrMOiqH+amoQSkN+21JnJWuwN0jNCt6dns3UTtPOEkq1nlKaCuOFGFWo7MDVTyEbFyECaZVyfvBLspGWXzqa98jHPrtP+pnv4j376FEv0ksW/7WtHDCcAKYbGzYrrsA+w295n23PX9ZzT4pfLeOXwVNLaQCh8a7G3EqEMRKjEjbVh0dRDZXunoHrFdgUDzpKKChSZ8zYL5Er2CYdCMFZnEqrRA944MTHgwZRAoRloOJE38DE0HATU="
+}</con:request>
+          <con:originalUri>https://api.github.com/user/keys</con:originalUri>
+          <con:credentials>
+            <con:selectedAuthProfile>GITSHIL</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+    </con:resource>
+  </con:interface>
+  <con:testSuite id="3f05bffa-a397-48cf-b526-e02f98cb43b9" name="https://api.github.com Test Suite">
+    <con:settings/>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase id="91c04dbf-7c50-4032-a60c-30bd6e5674f0" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="https://api.github.com Test Case 1" searchProperties="true" timeout="0">
+      <con:settings/>
+      <con:testStep type="restrequest" name="Request 1" id="34c417f9-41bf-4cdb-938c-9d2d57e1a169">
+        <con:settings/>
+        <con:config service="https://api.github.com" resourcePath="/user/emails" methodName="Emails" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Request 1" id="f94789ad-2d31-4c2a-b75c-cfb7935fc25b" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>https://api.github.com</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://api.github.com/user/emails</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="826155e5-506d-4de0-84b2-187a1825c379" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>GITSHIL</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters/>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Postrequest" id="4916dc1c-f06a-4a38-aabe-c9c5eadd9548">
+        <con:settings/>
+        <con:config service="https://api.github.com" resourcePath="/user/keys" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Postrequest" id="faaafe27-783b-4334-9c2f-d12aca03b517" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>https://api.github.com</con:endpoint>
+            <con:request>{
+"title": "TestKey",
+"key":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCmBAMKPbuvkUQBdcdAzHrJjPinLj/hPPLJyCNOY6SiqYsQaK+Jtsc0bI9iLxEx4BE43nwXerjBKPR8Z4e6p6Fj+jhNnH9LXJ5SEq39qp4Rke6sCrfG20w4J1ueqq69tVMyu+/un/uXMjtH26tz+6vh1HPcJq5LyiLh0m1MHwd4FKDZbJePnfriOMQ4/I2rXD0Wezggo8ndysCptOBbmOUiZHmi7ud5rgpLqnSp16PS8kAo1c1n3mKGkiXANBzchrth+xnFXaTGQ5mrMOiqH+amoQSkN+21JnJWuwN0jNCt6dns3UTtPOEkq1nlKaCuOFGFWo7MDVTyEbFyECaZVyfvBLspGWXzqa98jHPrtP+pnv4j376FEv0ksW/7WtHDCcAKYbGzYrrsA+w295n23PX9ZzT4pfLeOXwVNLaQCh8a7G3EqEMRKjEjbVh0dRDZXunoHrFdgUDzpKKChSZ8zYL5Er2CYdCMFZnEqrRA944MTHgwZRAoRloOJE38DE0HATU= gmx\02816z744@DESKTOP-L6F8PFM",
+}</con:request>
+            <con:originalUri>https://api.github.com/user/keys</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="bac1f7a0-7801-4725-80de-af4aea03caf1" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>GITSHIL</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters/>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+      <con:reportParameters/>
+    </con:testCase>
+    <con:properties/>
+    <con:reportParameters/>
+  </con:testSuite>
+  <con:properties/>
+  <con:wssContainer/>
+  <con:databaseConnectionContainer/>
+  <con:jmsConnectionContainer/>
+  <con:oAuth2ProfileContainer>
+    <con:oAuth2Profile>
+      <con:name>GITSHIL</con:name>
+      <con:type>OAuth 2.0</con:type>
+      <con:accessToken>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</con:accessToken>
+      <con:accessTokenPosition>HEADER</con:accessTokenPosition>
+      <con:accessTokenStatus>ENTERED_MANUALLY</con:accessTokenStatus>
+      <con:accessTokenStartingStatus>ENTERED_MANUALLY</con:accessTokenStartingStatus>
+      <con:oAuth2Flow>AUTHORIZATION_CODE_GRANT</con:oAuth2Flow>
+      <con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod>
+      <con:jwtConfiguration/>
+      <con:responseType>id_token</con:responseType>
+    </con:oAuth2Profile>
+  </con:oAuth2ProfileContainer>
+  <con:oAuth1ProfileContainer/>
+  <con:reporting>
+    <con:xmlTemplates/>
+    <con:parameters/>
+  </con:reporting>
+  <con:eventHandlers type="RequestFilter.filterRequest" name="RequestFilter.filterRequest">
+    <con:script>// Sample event script to add custom HTTP header to all outgoing REST, SOAP and HTTP(S) calls
+// This code is often used for adding custom authentication to ReadyAPI functional tests
+
+// If hardcoding the token, uncomment and change line 5
+// token = '4567'
+
+// If your token is parameterized in Project level custom property, uncomment line 8
+// token = request.parent.testCase.testSuite.project.getProperty('auth_token').getValue()
+
+// To modify all outgoing calls, remove comments from lines 11 to 16
+// headers = request.requestHeaders
+// if (headers.containsKey('auth_token2') == false) {
+//   headers.put('auth_token2', token)
+//   request.requestHeaders = headers
+// }</con:script>
+  </con:eventHandlers>
+  <con:eventHandlers type="TestRunListener.afterStep" name="TestRunListener.afterStep">
+    <con:script>// Save all test step results into files
+// Change the directory path in line 5 to a location where you want to store details
+// then uncomment lines 5 to 10
+
+// filePath = 'C:\\tempOutputDirectory\\'
+// fos = new java.io.FileOutputStream(filePath + testStepResult.testStep.label + '.txt', true)
+// pw = new java.io.PrintWriter(fos)
+// testStepResult.writeTo(pw)
+// pw.close()
+// fos.close()</con:script>
+  </con:eventHandlers>
+  <con:authRepository>
+    <con:oAuth20AuthEntry>
+      <con:name>GITSHIL</con:name>
+      <con:type>OAuth 2.0</con:type>
+      <con:accessToken>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</con:accessToken>
+      <con:accessTokenPosition>HEADER</con:accessTokenPosition>
+      <con:accessTokenStatus>ENTERED_MANUALLY</con:accessTokenStatus>
+      <con:accessTokenStartingStatus>ENTERED_MANUALLY</con:accessTokenStartingStatus>
+      <con:oAuth2Flow>AUTHORIZATION_CODE_GRANT</con:oAuth2Flow>
+      <con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod>
+      <con:jwtConfiguration/>
+      <con:responseType>id_token</con:responseType>
+    </con:oAuth20AuthEntry>
+  </con:authRepository>
+  <con:tags/>
+</con:soapui-project>
